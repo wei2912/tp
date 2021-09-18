@@ -30,9 +30,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Lutfi Randiva
 
-<img src="images/lutfi.png" width="200px">
+<img src="images/luffingluffy.png" width="200px">
 
-[[github](http://github.com/luffingluffy)] [[portfolio](team/lutfi.md)]
+[[github](http://github.com/luffingluffy)] [[portfolio](team/luffingluffy.md)]
 
 * Role: Developer
 * Responsibilities: UI, Scheduling and Deliverables.
