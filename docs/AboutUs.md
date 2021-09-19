@@ -1,5 +1,6 @@
----
-layout: page title: About Us
+| layout | title
+| --- | --- |
+| page | About Us
 ---
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
@@ -8,25 +9,25 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Ian Yong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ianyong.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/ianyong)]
+[[portfolio](team/ianyong.md)]
 
 * Role: Project Advisor
 
-### Jane Doe
+### Lauren Shak
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lrnshk.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/lrnshk)]
+[[portfolio](team/lrnshk.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Scheduling
 
 ### Lutfi Randiva
 
@@ -35,7 +36,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/luffingluffy)] [[portfolio](team/luffingluffy.md)]
 
 * Role: Developer
-* Responsibilities: UI, Scheduling and Deliverables.
+* Responsibilities: UI, Scheduling and Deliverables
 
 ### Jean Doe
 
