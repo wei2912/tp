@@ -38,6 +38,16 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: UI, Scheduling and Deliverables
 
+### Frederick Pek
+
+<img src="images/frederickpek.png" width="200px">
+
+[[github](http://github.com/frederickpek)]
+[[portfolio](team/frederickpek.md)]
+
+* Role: Developer
+* Responsibilities: Documentation and JavaFX
+
 ### Jean Doe
 
 <img src="images/johndoe.png" width="200px">
