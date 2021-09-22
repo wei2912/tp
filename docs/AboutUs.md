@@ -48,15 +48,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Documentation and JavaFX
 
-### Jean Doe
+### Andrew Sutjipto
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/over-fitted.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/over-fitted)]
+[[portfolio](team/over-fitted.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Git and Testing
 
 ### James Doe
 
