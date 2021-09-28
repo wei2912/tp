@@ -1,4 +1,6 @@
-_--- layout: page title: Lutfi Randiva's Project Portfolio Page
+--- 
+layout: page
+title: Lutfi Randiva's Project Portfolio Page
 ---
 
 ### Project: Track2Gather
