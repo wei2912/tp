@@ -30,9 +30,13 @@ Track2Gather is a **desktop app for contact tracing personnel at the [Ministry o
 
     *  **`sort`** : Sorts the contacts list, then displays the sorted contacts list.
 
-    *  **`find`** : Finds a person by name.
+    *  **`find`** : Find a person by name.
 
     *  **`delete`** : Deletes a person at the specified index.
+
+    * **`clear`** : Deletes all contacts.
+
+    * **`exit`** : Exits the app.
 
 Refer to the [Features](#features) below for details of each command.
 
@@ -76,7 +80,7 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER ha/HOME_ADDRESS e/EMAIL [wa/WORK_ADDRESS] [qa/QUARANTINE_ADDRESS] [as/ADD_SHN_PERIOD] [cn/ADD_CASE_NUMBER [kn/NEXT_OF_KIN_NAME] [kp/NEXT_OF_KIN_PHONE] [ka/NEXT_OF_KIN_ADDRESS]`
+Format: `add n/NAME p/PHONE_NUMBER ha/HOME_ADDRESS e/EMAIL [wa/WORK_ADDRESS] [qa/QUARANTINE_ADDRESS] [as/ADD_SHN_PERIOD] [cn/ADD_CASE_NUMBER] [kn/NEXT_OF_KIN_NAME] [kp/NEXT_OF_KIN_PHONE] [ka/NEXT_OF_KIN_ADDRESS]`
 
 Examples:
 - `add n/Alex p/98765432 ha/123 Orchard Road #01-100 800123 e/alex@email.com`
@@ -93,14 +97,23 @@ Use `-n` to sort by name, `-l` to sort by location.
 * The flags are optional, contacts will be sorted by name as a default.
 * The sort will be stable, following the given order of flags if any.
 
-### Finding contacts by name: `find` [coming soon]
+### Finding persons by name: `find`
 
-Finds a person by name.
+Finds persons whose names contain any of the given keywords.
 
-Format: `find KEYWORD`
+Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `fred` will match `Fred`.
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Persons matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+Examples:
+* `find John` returns `john` and `John Doe`
+* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+  ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Deleting a person : `delete` [coming soon]
 
@@ -117,6 +130,30 @@ Examples:
 * `sort` followed by `delete 2` deletes the 2nd person in the contacts list when sorted by name. 
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Clearing all entries : `clear`
+
+Clears all entries from the address book.
+
+Format: `clear`
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+### Saving the data
+
+AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+### Editing the data file
+
+AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+</div>
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -131,7 +168,9 @@ Coming soon!
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER ha/HOME_ADDRESS e/EMAIL [wa/WORK_ADDRESS] [qa/QUARANTINE_ADDRESS] [as/ADD_SHN_PERIOD] [cn/ADD_CASE_NUMBER [kn/NEXT_OF_KIN_NAME] [kp/NEXT_OF_KIN_PHONE] [ka/NEXT_OF_KIN_ADDRESS]`
+**Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Find** | `find KEYWORD`<br> e.g., `find James Jake`
+**Exit** | `exit`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Help** | `help`
 **Sort** | `sort [-FLAG1 -FLAG2 ...]`
