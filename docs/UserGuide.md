@@ -14,9 +14,9 @@ Track2Gather is a **desktop app for contact tracing personnel at the [Ministry o
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `track2gather.jar` from [here](https://github.com/AY2122S1-CS2103-W14-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your Track2Gather.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -72,13 +72,11 @@ Refer to the [Features](#features) below for details of each command.
 
 Shows a message explaining how to access the help page.
 
-![help message](images/helpMessage.png)
-
 Format: `help`
 
 ### Adding a person: `add` [coming soon]
 
-Adds a person to the address book.
+Adds a person to the contacts list.
 
 Format: `add n/NAME p/PHONE_NUMBER ha/HOME_ADDRESS e/EMAIL [wa/WORK_ADDRESS] [qa/QUARANTINE_ADDRESS] [as/ADD_SHN_PERIOD] [cn/ADD_CASE_NUMBER] [kn/NEXT_OF_KIN_NAME] [kp/NEXT_OF_KIN_PHONE] [ka/NEXT_OF_KIN_ADDRESS]`
 
@@ -113,7 +111,6 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Deleting a person : `delete` [coming soon]
 
@@ -144,14 +141,14 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Track2Gather data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Track2Gather data are saved as a JSON file `[JAR file location]/data/track2gather.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, Track2Gather will discard all data and start with an empty data file at the next run.
 </div>
 
 
@@ -167,7 +164,7 @@ Coming soon!
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER ha/HOME_ADDRESS e/EMAIL [wa/WORK_ADDRESS] [qa/QUARANTINE_ADDRESS] [as/ADD_SHN_PERIOD] [cn/ADD_CASE_NUMBER [kn/NEXT_OF_KIN_NAME] [kp/NEXT_OF_KIN_PHONE] [ka/NEXT_OF_KIN_ADDRESS]`
+**Add** | `add n/NAME p/PHONE_NUMBER ha/HOME_ADDRESS e/EMAIL [wa/WORK_ADDRESS] [qa/QUARANTINE_ADDRESS] [as/ADD_SHN_PERIOD] [cn/ADD_CASE_NUMBER] [kn/NEXT_OF_KIN_NAME] [kp/NEXT_OF_KIN_PHONE] [ka/NEXT_OF_KIN_ADDRESS]`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Exit** | `exit`
