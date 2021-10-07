@@ -21,19 +21,42 @@ public class Person {
     private final Email email;
 
     // Data fields
-    private final Address address;
+    private final Address homeAddress;
+    private final Object workAddress;
+    private final Object quarantineAddress;
+    private final Object shnPeriod;
+    private final Object caseNumber;
+    private final Object nextOfKinName;
+    private final Object nextOfKinPhone;
+    private final Object nextOfKinAddress;
+    // TODO: To remove when integrating changes to Add command.
+    @Deprecated
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * The following fields must be present and not null: name, phone, email, home_address, tags.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address homeAddress, Object workAddress,
+                  Object quarantineAddress, Object shnPeriod, Object caseNumber, Object nextOfKinName,
+                  Object nextOfKinPhone, Object nextOfKinAddress, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, homeAddress, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.homeAddress = homeAddress;
+        this.workAddress = workAddress;
+        this.quarantineAddress = quarantineAddress;
+        this.shnPeriod = shnPeriod;
+        this.caseNumber = caseNumber;
+        this.nextOfKinName = nextOfKinName;
+        this.nextOfKinPhone = nextOfKinPhone;
+        this.nextOfKinAddress = nextOfKinAddress;
         this.tags.addAll(tags);
+    }
+
+    @Deprecated
+    public Person(Name name, Phone phone, Email email, Address homeAddress, Set<Tag> tags) {
+        this(name, phone, email, homeAddress, null, null, null, null, null, null, null, tags);
     }
 
     public Name getName() {
@@ -48,13 +71,43 @@ public class Person {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public Address getHomeAddress() {
+        return homeAddress;
+    }
+
+    public Object getWorkAddress() {
+        return workAddress;
+    }
+
+    public Object getQuarantineAddress() {
+        return quarantineAddress;
+    }
+
+    public Object getShnPeriod() {
+        return shnPeriod;
+    }
+
+    public Object getCaseNumber() {
+        return caseNumber;
+    }
+
+    public Object getNextOfKinName() {
+        return nextOfKinName;
+    }
+
+    public Object getNextOfKinPhone() {
+        return nextOfKinPhone;
+    }
+
+    public Object getNextOfKinAddress() {
+        return nextOfKinAddress;
     }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
+     *
+     * @Deprecated
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
@@ -69,8 +122,7 @@ public class Person {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        return otherPerson != null && otherPerson.getName().equals(getName());
     }
 
     /**
@@ -91,14 +143,23 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getHomeAddress().equals(getHomeAddress())
+                // TODO: Add equality checks when integrating changes to Add command.
+                // && otherPerson.getWorkAddress().equals(getWorkAddress())
+                // && otherPerson.getQuarantineAddress().equals(getQuarantineAddress())
+                // && otherPerson.getShnPeriod().equals(getShnPeriod())
+                // && otherPerson.getCaseNumber().equals(getCaseNumber())
+                // && otherPerson.getNextOfKinName().equals(getNextOfKinName())
+                // && otherPerson.getNextOfKinPhone().equals(getNextOfKinPhone())
+                // && otherPerson.getNextOfKinAddress().equals(getNextOfKinAddress())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, homeAddress, workAddress, quarantineAddress, shnPeriod, caseNumber,
+            nextOfKinName, nextOfKinPhone, nextOfKinAddress, tags);
     }
 
     @Override
@@ -109,8 +170,22 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+                .append("; Home Address: ")
+                .append(getHomeAddress())
+                .append("; Work Address: ")
+                .append(getWorkAddress())
+                .append("; Quarantine Address: ")
+                .append(getQuarantineAddress())
+                .append("; SHN Period: ")
+                .append(getShnPeriod())
+                .append("; Case Number: ")
+                .append(getCaseNumber())
+                .append("; Next of Kin Name: ")
+                .append(getNextOfKinName())
+                .append("; Next of Kin Phone: ")
+                .append(getNextOfKinPhone())
+                .append("; Next of Kin Address: ")
+                .append(getNextOfKinAddress());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
