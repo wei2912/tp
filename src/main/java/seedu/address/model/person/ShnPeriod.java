@@ -14,14 +14,14 @@ import javafx.util.Pair;
 public class ShnPeriod {
     public static final String MESSAGE_CONSTRAINTS =
             "SHN period should be of two dates in the ISO-8601 format (i.e. yyyy-MM-ddTHH:mm:ss), "
-                    + "separated by a space. Start date should be keyed before the end date, "
-                    + "and must occur earlier than the end date by at least 1 second.";
+            + "separated by a space. Start date should be keyed before the end date, "
+            + "and must occur earlier than the end date by at least 1 second.";
 
     public final LocalDateTime startDate;
     public final LocalDateTime endDate;
 
     /**
-     * Constructs an {@code SHN period}.
+     * Constructs a {@code SHN period}.
      *
      * @param startDate A valid SHN start date.
      * @param endDate A valid SHN end date.
@@ -35,7 +35,7 @@ public class ShnPeriod {
     }
 
     /**
-     * Constructs an {@code SHN period} from a String.
+     * Constructs a {@code SHN period} from a String.
      *
      * @param shnPeriod A valid SHN period.
      */

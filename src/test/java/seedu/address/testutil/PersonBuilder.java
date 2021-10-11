@@ -21,14 +21,14 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_HOME_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_CASE_NUMBER = "456";
+    public static final String DEFAULT_HOME_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
     private Phone phone;
     private Email email;
-    private Address homeAddress;
     private CaseNumber caseNumber;
+    private Address homeAddress;
     private Set<Tag> tags;
 
     /**
@@ -38,8 +38,8 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        homeAddress = new Address(DEFAULT_HOME_ADDRESS);
         caseNumber = new CaseNumber(DEFAULT_CASE_NUMBER);
+        homeAddress = new Address(DEFAULT_HOME_ADDRESS);
         tags = new HashSet<>();
     }
 
@@ -50,8 +50,8 @@ public class PersonBuilder {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
-        homeAddress = personToCopy.getHomeAddress();
         caseNumber = personToCopy.getCaseNumber();
+        homeAddress = personToCopy.getHomeAddress();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -60,22 +60,6 @@ public class PersonBuilder {
      */
     public PersonBuilder withName(String name) {
         this.name = new Name(name);
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
-     */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withHomeAddress(String homeAddress) {
-        this.homeAddress = new Address(homeAddress);
         return this;
     }
 
@@ -104,13 +88,29 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Address} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withHomeAddress(String homeAddress) {
+        this.homeAddress = new Address(homeAddress);
+        return this;
+    }
+
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withTags(String ... tags) {
+        this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
      * Creates {@code Person} with attributes corresponding to those set by the builder.
      *
      * @return built custom {@code Person}
      */
     public Person build() {
-        return new Person(name, phone, email, homeAddress, Optional.empty(), Optional.empty(), Optional.empty(),
-                caseNumber, Optional.empty(), Optional.empty(), Optional.empty(), tags);
+        return new Person(name, phone, email, caseNumber, homeAddress, Optional.empty(), Optional.empty(),
+                Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), tags);
     }
 
 }

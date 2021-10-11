@@ -34,6 +34,7 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
+    // TODO: Update EditCommand after integrating changes to AddCommand
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
@@ -97,10 +98,13 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getHomeAddress().orElse(personToEdit.getHomeAddress());
+        CaseNumber updatedCaseNumber = editPersonDescriptor.getCaseNumber().orElse(personToEdit.getCaseNumber());
+        Address updatedHomeAddress = editPersonDescriptor.getHomeAddress().orElse(personToEdit.getHomeAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedCaseNumber, updatedHomeAddress,
+                Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(),
+                Optional.empty(), updatedTags);
     }
 
     @Override
@@ -129,8 +133,8 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private Address homeAddress;
         private CaseNumber caseNumber;
+        private Address homeAddress;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -143,8 +147,8 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setHomeAddress(toCopy.homeAddress);
             setCaseNumber(toCopy.caseNumber);
+            setHomeAddress(toCopy.homeAddress);
             setTags(toCopy.tags);
         }
 
@@ -152,7 +156,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, homeAddress, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, caseNumber, homeAddress, tags);
         }
 
         public void setName(Name name) {
@@ -179,20 +183,20 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setHomeAddress(Address homeAddress) {
-            this.homeAddress = homeAddress;
-        }
-
-        public Optional<Address> getHomeAddress() {
-            return Optional.ofNullable(homeAddress);
-        }
-
         public void setCaseNumber(CaseNumber caseNumber) {
             this.caseNumber = caseNumber;
         }
 
         public Optional<CaseNumber> getCaseNumber() {
             return Optional.ofNullable(caseNumber);
+        }
+
+        public void setHomeAddress(Address homeAddress) {
+            this.homeAddress = homeAddress;
+        }
+
+        public Optional<Address> getHomeAddress() {
+            return Optional.ofNullable(homeAddress);
         }
 
         /**
@@ -230,8 +234,8 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getHomeAddress().equals(e.getHomeAddress())
                     && getCaseNumber().equals(e.getCaseNumber())
+                    && getHomeAddress().equals(e.getHomeAddress())
                     && getTags().equals(e.getTags());
         }
     }

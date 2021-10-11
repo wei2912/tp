@@ -7,11 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.ShnPeriod;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -39,13 +35,15 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
+    private Label email;
+    @FXML
+    private Label caseNumber;
+    @FXML
     private Label homeAddress;
     @FXML
     private Label workAddress;
     @FXML
     private Label quarantineAddress;
-    @FXML
-    private Label email;
     @FXML
     private Label shnPeriod;
     @FXML
@@ -66,14 +64,15 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
-        homeAddress.setText(person.getHomeAddress().value);
-        workAddress.setText(person.getWorkAddress().map(Address::toString).orElse(""));
-        quarantineAddress.setText(person.getQuarantineAddress().map(Address::toString).orElse(""));
-        shnPeriod.setText(person.getShnPeriod().map(ShnPeriod::toString).orElse(""));
         email.setText(person.getEmail().value);
-        nextOfKinName.setText(person.getNextOfKinName().map(Name::toString).orElse(""));
-        nextOfKinPhone.setText(person.getNextOfKinPhone().map(Phone::toString).orElse(""));
-        nextOfKinAddress.setText(person.getNextOfKinAddress().map(Address::toString).orElse(""));
+        caseNumber.setText(person.getCaseNumber().value);
+        homeAddress.setText(person.getHomeAddress().value);
+        workAddress.setText(person.getWorkAddress().map(Object::toString).orElse(""));
+        quarantineAddress.setText(person.getQuarantineAddress().map(Object::toString).orElse(""));
+        shnPeriod.setText(person.getShnPeriod().map(Object::toString).orElse(""));
+        nextOfKinName.setText(person.getNextOfKinName().map(Object::toString).orElse(""));
+        nextOfKinPhone.setText(person.getNextOfKinPhone().map(Object::toString).orElse(""));
+        nextOfKinAddress.setText(person.getNextOfKinAddress().map(Object::toString).orElse(""));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

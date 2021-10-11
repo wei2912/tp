@@ -30,11 +30,11 @@ class JsonAdaptedPerson {
     private final String name;
     private final String phone;
     private final String email;
+    private final String caseNumber;
     private final String homeAddress;
     private final String workAddress;
     private final String quarantineAddress;
     private final String shnPeriod;
-    private final String caseNumber;
     private final String nextOfKinName;
     private final String nextOfKinPhone;
     private final String nextOfKinAddress;
@@ -45,8 +45,7 @@ class JsonAdaptedPerson {
      */
     @Deprecated
     public JsonAdaptedPerson(String name, String phone, String email, String homeAddress, List<JsonAdaptedTag> tagged) {
-        this(name, phone, email, homeAddress, null, null, null,
-                null, null, null, null, tagged);
+        this(name, phone, email, "1", homeAddress, null, null, null, null, null, null, tagged);
     }
 
     /**
@@ -54,24 +53,23 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email, @JsonProperty("homeAddress") String homeAddress,
-                             @JsonProperty(value = "workAddress", required = false) String workAddress,
-                             @JsonProperty(value = "quarantineAddress", required = false) String quarantineAddress,
-                             @JsonProperty(value = "shnPeriod", required = false) String shnPeriod,
-                             @JsonProperty(value = "caseNumber", required = false) String caseNumber,
-                             @JsonProperty(value = "nextOfKinName", required = false) String nextOfKinName,
-                             @JsonProperty(value = "nextOfKinPhone", required = false) String nextOfKinPhone,
-                             @JsonProperty(value = "nextOfKinAddress", required = false)
-                                         String nextOfKinAddress,
-                             @JsonProperty(value = "tagged", required = false) List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("email") String email, @JsonProperty("caseNumber") String caseNumber,
+                             @JsonProperty("homeAddress") String homeAddress,
+                             @JsonProperty("workAddress") String workAddress,
+                             @JsonProperty("quarantineAddress") String quarantineAddress,
+                             @JsonProperty("shnPeriod") String shnPeriod,
+                             @JsonProperty("nextOfKinName") String nextOfKinName,
+                             @JsonProperty("nextOfKinPhone") String nextOfKinPhone,
+                             @JsonProperty("nextOfKinAddress") String nextOfKinAddress,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.caseNumber = caseNumber;
         this.homeAddress = homeAddress;
         this.workAddress = workAddress;
         this.quarantineAddress = quarantineAddress;
         this.shnPeriod = shnPeriod;
-        this.caseNumber = caseNumber;
         this.nextOfKinName = nextOfKinName;
         this.nextOfKinPhone = nextOfKinPhone;
         this.nextOfKinAddress = nextOfKinAddress;
@@ -87,14 +85,14 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
+        caseNumber = source.getCaseNumber().value;
         homeAddress = source.getHomeAddress().value;
         workAddress = source.getWorkAddress().map(Object::toString).orElse(null);
         quarantineAddress = source.getQuarantineAddress().map(Object::toString).orElse(null);
         shnPeriod = source.getShnPeriod().map(Object::toString).orElse(null);
-        caseNumber = source.getCaseNumber().value;
-        nextOfKinName = source.getNextOfKinName().map(name -> name.toString()).orElse(null);
-        nextOfKinPhone = source.getNextOfKinPhone().map(phone -> phone.toString()).orElse(null);
-        nextOfKinAddress = source.getNextOfKinAddress().map(address -> address.toString()).orElse(null);
+        nextOfKinName = source.getNextOfKinName().map(Object::toString).orElse(null);
+        nextOfKinPhone = source.getNextOfKinPhone().map(Object::toString).orElse(null);
+        nextOfKinAddress = source.getNextOfKinAddress().map(Object::toString).orElse(null);
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -135,6 +133,15 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
+        if (caseNumber == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    CaseNumber.class.getSimpleName()));
+        }
+        if (!CaseNumber.isValidCaseNumber(caseNumber)) {
+            throw new IllegalValueException(CaseNumber.MESSAGE_CONSTRAINTS);
+        }
+        final CaseNumber modelCaseNumber = new CaseNumber(caseNumber);
+
         if (homeAddress == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
@@ -146,54 +153,38 @@ class JsonAdaptedPerson {
         if (workAddress != null && !Address.isValidAddress(workAddress)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
-        final Optional<Address> modelWorkAddress =
-                workAddress == null
-                        ? Optional.empty()
-                        : Optional.of(new Address(homeAddress));
+        final Optional<Address> modelWorkAddress = Optional.ofNullable(workAddress).map(Address::new);
 
         if (quarantineAddress != null && !Address.isValidAddress(quarantineAddress)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
-        final Optional<Address> modelQuarantineAddress =
-                workAddress == null
-                        ? Optional.empty()
-                        : Optional.of(new Address(homeAddress));
+        final Optional<Address> modelQuarantineAddress = Optional.ofNullable(quarantineAddress).map(Address::new);
 
         if (shnPeriod != null && !ShnPeriod.isValidShnPeriodString(shnPeriod)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
-        final Optional<ShnPeriod> modelShnPeriod =
-                shnPeriod == null
-                        ? Optional.empty()
-                        : Optional.of(new ShnPeriod(shnPeriod));
-
-        if (!CaseNumber.isValidCaseNumber(caseNumber)) {
-            throw new IllegalValueException(CaseNumber.MESSAGE_CONSTRAINTS);
-        }
-        final CaseNumber modelCaseNumber = new CaseNumber(caseNumber);
+        final Optional<ShnPeriod> modelShnPeriod = Optional.ofNullable(shnPeriod).map(ShnPeriod::new);
 
         if (nextOfKinName != null && !Name.isValidName(nextOfKinName)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
-        final Optional<Name> modelNextOfKinName =
-                Optional.ofNullable(nextOfKinName).map(str -> new Name(str));
+        final Optional<Name> modelNextOfKinName = Optional.ofNullable(nextOfKinName).map(Name::new);
 
         if (nextOfKinPhone != null && !Phone.isValidPhone(nextOfKinPhone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
-        final Optional<Phone> modelNextOfKinPhone =
-                Optional.ofNullable(nextOfKinPhone).map(str -> new Phone(str));
+        final Optional<Phone> modelNextOfKinPhone = Optional.ofNullable(nextOfKinPhone).map(Phone::new);
 
         if (nextOfKinAddress != null && !Address.isValidAddress(nextOfKinAddress)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
-        final Optional<Address> modelNextOfKinAddress =
-                Optional.ofNullable(nextOfKinAddress).map(str -> new Address(str));
+        final Optional<Address> modelNextOfKinAddress = Optional.ofNullable(nextOfKinAddress).map(Address::new);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelHomeAddress, modelWorkAddress,
-                modelQuarantineAddress, modelShnPeriod, modelCaseNumber, modelNextOfKinName,
-                modelNextOfKinPhone, modelNextOfKinAddress, modelTags);
+
+        return new Person(modelName, modelPhone, modelEmail, modelCaseNumber, modelHomeAddress, modelWorkAddress,
+                modelQuarantineAddress, modelShnPeriod, modelNextOfKinName, modelNextOfKinPhone, modelNextOfKinAddress,
+                modelTags);
     }
 
 }

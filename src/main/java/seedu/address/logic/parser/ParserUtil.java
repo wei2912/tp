@@ -70,6 +70,36 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String email} into an {@code Email}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code email} is invalid.
+     */
+    public static Email parseEmail(String email) throws ParseException {
+        requireNonNull(email);
+        String trimmedEmail = email.trim();
+        if (!Email.isValidEmail(trimmedEmail)) {
+            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+        }
+        return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String caseNumber} into a {@code CaseNumber}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code caseNumber} is invalid.
+     */
+    public static CaseNumber parseCaseNumber(String caseNumber) throws ParseException {
+        requireNonNull(caseNumber);
+        String trimmedCaseNumber = caseNumber.trim();
+        if (!CaseNumber.isValidCaseNumber(trimmedCaseNumber)) {
+            throw new ParseException(CaseNumber.MESSAGE_CONSTRAINTS);
+        }
+        return new CaseNumber(trimmedCaseNumber);
+    }
+
+    /**
      * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -113,36 +143,6 @@ public class ParserUtil {
             throw new ParseException(ShnPeriod.MESSAGE_CONSTRAINTS);
         }
         return new ShnPeriod(startDate, endDate);
-    }
-
-    /**
-     * Parses a {@code String email} into an {@code Email}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code email} is invalid.
-     */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
-        }
-        return new Email(trimmedEmail);
-    }
-
-    /**
-     * Parses a {@code String caseNumber} into a {@code CaseNumber}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code caseNumber} is invalid.
-     */
-    public static CaseNumber parseCaseNumber(String caseNumber) throws ParseException {
-        requireNonNull(caseNumber);
-        String trimmedCaseNumber = caseNumber.trim();
-        if (!CaseNumber.isValidCaseNumber(trimmedCaseNumber)) {
-            throw new ParseException(CaseNumber.MESSAGE_CONSTRAINTS);
-        }
-        return new CaseNumber(trimmedCaseNumber);
     }
 
     /**

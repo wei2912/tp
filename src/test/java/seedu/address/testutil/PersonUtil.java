@@ -34,8 +34,8 @@ public class PersonUtil {
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
-        sb.append(PREFIX_HOME_ADDRESS + person.getHomeAddress().value + " ");
         sb.append(PREFIX_CASE_NUMBER + person.getCaseNumber().value + " ");
+        sb.append(PREFIX_HOME_ADDRESS + person.getHomeAddress().value + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -50,6 +50,8 @@ public class PersonUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
+        descriptor.getCaseNumber().ifPresent(caseNumber -> sb.append(PREFIX_CASE_NUMBER).append(caseNumber.value)
+                .append(" "));
         descriptor.getHomeAddress().ifPresent(homeAddress -> sb.append(PREFIX_HOME_ADDRESS).append(homeAddress.value)
                 .append(" "));
         if (descriptor.getTags().isPresent()) {
