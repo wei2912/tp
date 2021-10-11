@@ -4,8 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
-
-import javafx.util.Pair;
+import java.util.Objects;
 
 /**
  * Represents a Person's SHN period in the address book.
@@ -78,6 +77,6 @@ public class ShnPeriod {
 
     @Override
     public int hashCode() {
-        return new Pair<>(startDate, endDate).hashCode();
+        return Objects.hash(startDate, endDate);
     }
 }
