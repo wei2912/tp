@@ -1,7 +1,5 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -73,9 +71,6 @@ public class PersonCard extends UiPart<Region> {
         nextOfKinName.setText(person.getNextOfKinName().map(Object::toString).orElse(""));
         nextOfKinPhone.setText(person.getNextOfKinPhone().map(Object::toString).orElse(""));
         nextOfKinAddress.setText(person.getNextOfKinAddress().map(Object::toString).orElse(""));
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override
