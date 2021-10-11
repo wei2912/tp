@@ -34,14 +34,7 @@ class JsonAdaptedPerson {
     private final String nextOfKinAddress;
 
     /**
-     * Short constructor for {@code JsonAdaptedPerson} with no optional attributes.
-     */
-    public JsonAdaptedPerson(String name, String phone, String email, String caseNumber, String homeAddress) {
-        this(name, phone, email, caseNumber, homeAddress, null, null, null, null, null, null);
-    }
-
-    /**
-     * Constructor for {@code JsonAdaptedPerson}.
+     * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,

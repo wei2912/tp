@@ -27,7 +27,10 @@ public class TypicalPersons {
             .withEmail("alice@example.com").withCaseNumber("5").withHomeAddress("123, Jurong West Ave 6, #08-111")
             .build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier").withPhone("98765432")
-            .withEmail("johnd@example.com").withCaseNumber("6").withHomeAddress("311, Clementi Ave 2, #02-25").build();
+            .withEmail("johnd@example.com").withCaseNumber("6").withHomeAddress("311, Clementi Ave 2, #02-25")
+            .withWorkAddress("29 Flora Rd #01-08").withQuarantineAddress("3 Temasek Boulevard #03-028C")
+            .withShnPeriod("2020-04-13 => 2020-04-27").withNextOfKinName("John Green").withNextOfKinPhone("84515153")
+            .withNextOfKinAddress("120 Hillview Avenue #06-02").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withCaseNumber("7").withHomeAddress("wall street").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
