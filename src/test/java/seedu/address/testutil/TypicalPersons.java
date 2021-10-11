@@ -25,38 +25,36 @@ import seedu.address.model.person.Person;
  */
 public class TypicalPersons {
 
-    public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
-            .withHomeAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253").withCaseNumber("5")
+    public static final Person ALICE = new PersonBuilder().withName("Alice Pauline").withPhone("94351253")
+            .withEmail("alice@example.com").withCaseNumber("5").withHomeAddress("123, Jurong West Ave 6, #08-111")
             .withTags("friends").build();
-    public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
-            .withHomeAddress("311, Clementi Ave 2, #02-25")
-            .withEmail("johnd@example.com").withPhone("98765432").withCaseNumber("6")
+    public static final Person BENSON = new PersonBuilder().withName("Benson Meier").withPhone("98765432")
+            .withEmail("johnd@example.com").withCaseNumber("6").withHomeAddress("311, Clementi Ave 2, #02-25")
             .withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withHomeAddress("wall street").withCaseNumber("7").build();
+            .withEmail("heinz@example.com").withCaseNumber("7").withHomeAddress("wall street").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withHomeAddress("10th street").withCaseNumber("8")
+            .withEmail("cornelia@example.com").withCaseNumber("8").withHomeAddress("10th street")
             .withTags("friends").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withHomeAddress("michegan ave").withCaseNumber("9").build();
+            .withEmail("werner@example.com").withCaseNumber("9").withHomeAddress("michegan ave").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withHomeAddress("little tokyo").withCaseNumber("10").build();
+            .withEmail("lydia@example.com").withCaseNumber("10").withHomeAddress("little tokyo").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withHomeAddress("4th street").withCaseNumber("11").build();
+            .withEmail("anna@example.com").withCaseNumber("11").withHomeAddress("4th street").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withHomeAddress("little india").withCaseNumber("12").build();
+            .withEmail("stefan@example.com").withCaseNumber("12").withHomeAddress("little india").build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withHomeAddress("chicago ave").withCaseNumber("13").build();
+            .withEmail("hans@example.com").withCaseNumber("13").withHomeAddress("chicago ave").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withHomeAddress(VALID_HOME_ADDRESS_AMY).withCaseNumber(VALID_CASE_NUMBER_AMY)
+            .withEmail(VALID_EMAIL_AMY).withCaseNumber(VALID_CASE_NUMBER_AMY).withHomeAddress(VALID_HOME_ADDRESS_AMY)
             .withTags(VALID_TAG_FRIEND).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withHomeAddress(VALID_HOME_ADDRESS_BOB).withCaseNumber(VALID_CASE_NUMBER_BOB)
+            .withEmail(VALID_EMAIL_BOB).withCaseNumber(VALID_CASE_NUMBER_BOB).withHomeAddress(VALID_HOME_ADDRESS_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

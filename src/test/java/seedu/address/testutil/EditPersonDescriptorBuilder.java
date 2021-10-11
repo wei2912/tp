@@ -36,8 +36,8 @@ public class EditPersonDescriptorBuilder {
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
-        descriptor.setHomeAddress(person.getHomeAddress());
         descriptor.setCaseNumber(person.getCaseNumber());
+        descriptor.setHomeAddress(person.getHomeAddress());
         descriptor.setTags(person.getTags());
     }
 
@@ -66,18 +66,18 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
-     */
-    public EditPersonDescriptorBuilder withHomeAddress(String homeAddress) {
-        descriptor.setHomeAddress(new Address(homeAddress));
-        return this;
-    }
-
-    /**
      * Sets the {@code CaseNumber} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withCaseNumber(String caseNumber) {
         descriptor.setCaseNumber(new CaseNumber(caseNumber));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withHomeAddress(String homeAddress) {
+        descriptor.setHomeAddress(new Address(homeAddress));
         return this;
     }
 

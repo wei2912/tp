@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CASE_NUMBER_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_HOME_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -33,7 +34,8 @@ public class PersonTest {
 
         // same name, all other attributes different -> returns true
         Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withHomeAddress(VALID_HOME_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withCaseNumber(VALID_CASE_NUMBER_BOB).withHomeAddress(VALID_HOME_ADDRESS_BOB)
+                .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -78,6 +80,10 @@ public class PersonTest {
 
         // different email -> returns false
         editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different case number -> returns false
+        editedAlice = new PersonBuilder(ALICE).withCaseNumber(VALID_CASE_NUMBER_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different address -> returns false
