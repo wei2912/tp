@@ -61,8 +61,8 @@ public class Person {
      * Deprecated constructor.
      */
     @Deprecated
-    public Person(Name name, Phone phone, Email email, Address homeAddress, Set<Tag> tags) {
-        this(name, phone, email, new CaseNumber("1"), homeAddress, Optional.empty(), Optional.empty(), Optional.empty(),
+    public Person(Name name, Phone phone, Email email, CaseNumber caseNumber, Address homeAddress, Set<Tag> tags) {
+        this(name, phone, email, caseNumber, homeAddress, Optional.empty(), Optional.empty(), Optional.empty(),
                 Optional.empty(), Optional.empty(), Optional.empty(), tags);
     }
 

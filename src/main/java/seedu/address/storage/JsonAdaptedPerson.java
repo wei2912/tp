@@ -38,14 +38,16 @@ class JsonAdaptedPerson {
     private final String nextOfKinName;
     private final String nextOfKinPhone;
     private final String nextOfKinAddress;
+    @Deprecated
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @Deprecated
-    public JsonAdaptedPerson(String name, String phone, String email, String homeAddress, List<JsonAdaptedTag> tagged) {
-        this(name, phone, email, "1", homeAddress, null, null, null, null, null, null, tagged);
+    public JsonAdaptedPerson(String name, String phone, String email, String caseNumber, String homeAddress,
+                             List<JsonAdaptedTag> tagged) {
+        this(name, phone, email, caseNumber, homeAddress, null, null, null, null, null, null, tagged);
     }
 
     /**
