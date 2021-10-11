@@ -1,7 +1,6 @@
 package seedu.address.testutil;
 
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
@@ -109,8 +108,7 @@ public class PersonBuilder {
      * @return built custom {@code Person}
      */
     public Person build() {
-        return new Person(name, phone, email, caseNumber, homeAddress, Optional.empty(), Optional.empty(),
-                Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), tags);
+        return new Person(name, phone, email, caseNumber, homeAddress, tags);
     }
 
 }

@@ -35,7 +35,9 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * The following fields must be present and not null: name, phone, email, case number, home_address, tags.
+     * Constructor for Person.
+     *
+     * All fields must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, CaseNumber caseNumber, Address homeAddress,
                   Optional<Address> workAddress, Optional<Address> quarantineAddress, Optional<ShnPeriod> shnPeriod,
@@ -58,9 +60,8 @@ public class Person {
     }
 
     /**
-     * Deprecated constructor.
+     * Short constructor for Person with no optional attributes.
      */
-    @Deprecated
     public Person(Name name, Phone phone, Email email, CaseNumber caseNumber, Address homeAddress, Set<Tag> tags) {
         this(name, phone, email, caseNumber, homeAddress, Optional.empty(), Optional.empty(), Optional.empty(),
                 Optional.empty(), Optional.empty(), Optional.empty(), tags);
