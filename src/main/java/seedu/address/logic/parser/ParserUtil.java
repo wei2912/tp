@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
@@ -129,12 +129,12 @@ public class ParserUtil {
             throw new ParseException(ShnPeriod.MESSAGE_CONSTRAINTS);
         }
 
-        LocalDateTime startDate;
-        LocalDateTime endDate;
+        LocalDate startDate;
+        LocalDate endDate;
 
         try {
-            startDate = LocalDateTime.parse(dates[0]);
-            endDate = LocalDateTime.parse(dates[1]);
+            startDate = LocalDate.parse(dates[0]);
+            endDate = LocalDate.parse(dates[1]);
         } catch (DateTimeParseException e) {
             throw new ParseException(ShnPeriod.MESSAGE_CONSTRAINTS);
         }
