@@ -13,7 +13,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_HOME_ADDRESS = new Prefix("ha/");
     public static final Prefix PREFIX_WORK_ADDRESS = new Prefix("wa/");
     public static final Prefix PREFIX_QUARANTINE_ADDRESS = new Prefix("qa/");
-    public static final Prefix PREFIX_SHN_PERIOD = new Prefix("as/");
+    public static final Prefix PREFIX_SHN_PERIOD = new Prefix("sh/");
     public static final Prefix PREFIX_NEXT_OF_KIN_NAME = new Prefix("kn/");
     public static final Prefix PREFIX_NEXT_OF_KIN_PHONE = new Prefix("kp/");
     public static final Prefix PREFIX_NEXT_OF_KIN_ADDRESS = new Prefix("ka/");
